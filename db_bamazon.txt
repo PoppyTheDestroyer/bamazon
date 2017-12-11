@@ -1,0 +1,13 @@
+CREATE DATABASE bamazon;
+CREATE TABLE products (item_id integer NOT NULL, product_name VARCHAR(30) NOT NULL, department_name VARCHAR(30) NOT NULL, price INTEGER NOT NULL, stock_quantity INTEGER NOT NULL);
+insert into products(item_id, product_name, department_name, price, stock_quantity)
+                           -> VALUES(111, "Super Backpack", "Camping", 50, 120),
+                           -> (112, "One-Person Tent", "Camping", 250, 34),
+                           -> (113, "PlayStation 4", "Entertainment", 400, 301),
+                           -> (114, "XBox One", "Entertainnment", 400, 203),
+                           -> (115, "45-Degree Mummy Sleeping Bag", "Camping", 150, 230),
+                           -> (116, "Nintendo 64", "Entertainment", 5000, 12),
+                           -> (117, "Ultra Warm Socks", "Clothing", 20, 2000),
+                           -> (118, "Red Chuck Taylors", "Clothing", 55, 99),
+                           -> (119, "Dope Gas Station Sunglasses", "Clothing", 15, 200),
+                           -> (120, "Cat. Is Boy. You Take.", "Camping", 1, 1);
