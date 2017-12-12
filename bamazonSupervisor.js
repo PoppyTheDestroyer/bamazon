@@ -58,7 +58,7 @@ function newDept() {
             }
         ])
         .then(function (inquirerResponse) {
-            connection.query("INSERT INTO DEPARTMENTS SET ?", {
+            connection.query("INSERT INTO departments SET ?", {
                 department_id: inquirerResponse.departmentNew,
                 department_name: inquirerResponse.deptName, overhead_costs: inquirerResponse.overhead
             }, function (err, response) {
@@ -70,4 +70,8 @@ function newDept() {
             })
             connection.end();
     })
+}
+
+function displayTable() {
+
 }
