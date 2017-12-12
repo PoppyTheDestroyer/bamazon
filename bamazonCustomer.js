@@ -92,12 +92,19 @@ function purchase(num, funQuant, itemNumber) {
         if (err) {
             throw err
         }
-        var total = "SELECT price FROM products WHERE item_id = " + itemNumber;
+        var total = "SELECT price, product_sales FROM products WHERE item_id = " + itemNumber;
         connection.query(total, function (err, response) {
             if (err) {
                 throw err
             }
             var totalPrice = funQuant * response[0].price;
+            var productTotal = totalPrice + parseInt(response[0].product_sales);
+            var updateSales = "UPDATE products SET product_sales = " + productTotal + " WHERE item_id = " + itemNumber + ";";
+            connection.query(updateSales, function(err, response) {
+                if(err) {
+                    throw err
+                }
+            })
             console.log("Your total is $" + totalPrice +". Thank you for your money. And your business, I guess.");
             connection.end();
         })
