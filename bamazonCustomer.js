@@ -24,7 +24,7 @@ function productDisplay() {
             throw err
         };
         for (var i = 0; i < response.length; i +=1) {
-            console.log("Product ID: " + response[i].item_id + "\nItem: " + response[i].product_name + "\nPrice: " + response[i].price + "\n")
+            console.log("Product ID: " + response[i].item_id + "\nItem: " + response[i].product_name + "\nPrice: $" + response[i].price + "\n")
         }
         inquirer
             .prompt([
@@ -98,7 +98,7 @@ function purchase(num, funQuant, itemNumber) {
                 throw err
             }
             var totalPrice = funQuant * response[0].price;
-            console.log("Your total is $" + totalPrice +". Thank you for your money. And business.");
+            console.log("Your total is $" + totalPrice +". Thank you for your money. And your business, I guess.");
             connection.end();
         })
     })
