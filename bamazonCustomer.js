@@ -43,8 +43,8 @@ function productDisplay() {
                     if (err) {
                         throw err
                     }
-                    console.log(response[0].stock_quantity);
-                    console.log(inquirerResponse.quantity)
+                    //console.log(response[0].stock_quantity);
+                    //console.log(inquirerResponse.quantity)
                     if (response[0].stock_quantity < inquirerResponse.quantity) {
                         console.log("Insufficient Quantity");
                         inquirer
@@ -60,22 +60,44 @@ function productDisplay() {
                                     if (err) {
                                         throw err
                                     }
-                                    console.log(responseTwo[0].stock_quantity);
-                                    console.log(inquirerResponseTwo.quantityTwo);
+                                    //console.log(responseTwo[0].stock_quantity);
+                                    //console.log(inquirerResponseTwo.quantityTwo);
                                     if (responseTwo[0].stock_quantity < inquirerResponseTwo.quantityTwo) {
                                         console.log("Ok, we're done here. Come back when you understand basic math. Idiot.");
                                         connection.end();
+                                    } else {
+                                        purchase(response[0].stock_quantity, inquirerResponseTwo.quantityTwo, inquirerResponse.itemId)
                                     }
                                 })
                             })
-                    };
-//You left off here!!!! var buy = "UPDATE products SET "
+                    } else {
+                        //console.log(inquirerResponse.itemId);
+                        //console.log(inquirerResponse.quantity);
+                        //console.log(response[0].stock_quantity);
+                        purchase(response[0].stock_quantity, inquirerResponse.quantity, inquirerResponse.itemId)
+                    }
                 });
             })
     });
 }
 productDisplay();
 
-function purchase() {
-
-}
+function purchase(num, funQuant, itemNumber) {
+    var updateQuantity = num - funQuant;
+    //console.log(updateQuantity);
+    var buy = "UPDATE products SET stock_quantity = " + updateQuantity + " WHERE item_id = " + itemNumber + ";";
+    connection.query(buy, function (err, response) {
+        if (err) {
+            throw err
+        }
+        var total = "SELECT price FROM products WHERE item_id = " + itemNumber;
+        connection.query(total, function (err, response) {
+            if (err) {
+                throw err
+            }
+            var totalPrice = funQuant * response[0].price;
+            console.log("Your total is $" + totalPrice +". Thank you for your money. And business.");
+            connection.end();
+        })
+    })
+};
