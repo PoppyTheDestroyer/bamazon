@@ -14,16 +14,18 @@ connection.connect(function (err) {
     if (err) {
         throw err
     }
-    console.log(`Connected as ID: ${connection.threadId}`);
+    //console.log(`Connected as ID: ${connection.threadId}`);
 });
 
 function productDisplay() {
-    var query = "SELECT * FROM products;";
+    var query = "SELECT item_id, product_name, price FROM products;";
     connection.query(query, function (err, response) {
         if (err) {
             throw err
         };
-        console.log(response);
+        for (var i = 0; i < response.length; i +=1) {
+            console.log("Product ID: " + response[i].item_id + "\nItem: " + response[i].product_name + "\nPrice: " + response[i].price + "\n")
+        }
         inquirer
             .prompt([
                 {
