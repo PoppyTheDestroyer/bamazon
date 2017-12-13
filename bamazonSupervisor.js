@@ -13,11 +13,12 @@ const connection = mySql.createConnection(connectObject);
 connection.connect(function (err) {
     if (err) {
         throw err
-    }
+    };
+    begin();
     //console.log(`Connected as ID: ${connection.threadId}`);
 });
 
-inquirer
+function begin() {inquirer
     .prompt([
         {
             type: "list",
@@ -37,6 +38,7 @@ inquirer
             connection.end();
         }
     })
+}
 
 function newDept() {
     inquirer
@@ -67,11 +69,21 @@ function newDept() {
                 }
                 console.log("Department ID: " + inquirerResponse.departmentNew + 
                 "\nDepartment Name: " + inquirerResponse.deptName + "\nOverhead: " + inquirerResponse.overhead + "\n");
+                begin();
             })
-            connection.end();
+            
     })
 }
 
 function displayTable() {
 
+};
+
+function joinTable() {
+    var tableJoin = "SELECT departments.department_id, departments.department_name, departments.overhead_costs, products.product_sales FROM departments INNER JOIN products ON departments.department_name = products.department_name;";
+connection.query(tableJoin, function (err, response) {
+    if(err) {
+        throw err
+    }
+})
 }
