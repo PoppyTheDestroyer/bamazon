@@ -24,7 +24,7 @@ function productDisplay() {
             throw err
         };
         for (var i = 0; i < response.length; i +=1) {
-            console.log("Product ID: " + response[i].item_id + "\nItem: " + response[i].product_name + "\nPrice: $" + response[i].price + "\n")
+            console.log(`Product ID: ${response[i].item_id} \nItem: ${response[i].product_name} \nPrice: $${response[i].price}\n`)
         }
         inquirer
             .prompt([
