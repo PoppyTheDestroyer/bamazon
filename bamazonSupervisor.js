@@ -87,7 +87,7 @@ function drawTable() {
         if (err) {
             throw err
         }
-        console.log(response);
+        //console.log(response);
         for (var i = 0; i < response.length; i += 1) {
             var values = [
                 [
