@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/jmsaenz5/bamazon#readme",
   "dependencies": {
+    "chalk": "^2.3.0",
+    "console.table": "^0.9.1",
     "inquirer": "^4.0.1",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "table": "^4.0.2",
+    "tty-table": "^2.5.5"
   }
 }
