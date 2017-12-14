@@ -29,7 +29,7 @@ function begin() {inquirer
     ])
     .then(function (inquirerResponse) {
         if (inquirerResponse.begin === "View product sales by department") {
-            displayTable();
+            joinTable();
         }
         if (inquirerResponse.begin === "Create new department") {
             newDept();
@@ -75,15 +75,15 @@ function newDept() {
     })
 }
 
-function displayTable() {
-
-};
 
 function joinTable() {
-    var tableJoin = "SELECT departments.department_id, departments.department_name, departments.overhead_costs, products.product_sales FROM departments INNER JOIN products ON departments.department_name = products.department_name;";
+    var tableJoin = `SELECT departments.department_id, departments.department_name, 
+    departments.overhead_costs, SUM(products.product_sales) AS product_sales, SUM(products.product_sales) - departments.overhead_costs AS total_profit FROM departments INNER JOIN products 
+    ON departments.department_name = products.department_name GROUP BY department_id, department_name, overhead_costs;`;
 connection.query(tableJoin, function (err, response) {
     if(err) {
         throw err
     }
+    console.log(response);
 })
 }

@@ -159,7 +159,7 @@ function addProduct() {
             connection.query("INSERT INTO products SET ?", {
                 item_id: inquirerResponse.newID,
                 product_name: inquirerResponse.name, department_name: inquirerResponse.newDept,
-                price: inquirerResponse.newPrice, stock_quantity: inquirerResponse.newQuant
+                price: inquirerResponse.newPrice, stock_quantity: inquirerResponse.newQuant, product_sales: 0
             },
                 function (err, response) {
                     if (err) {
@@ -168,7 +168,7 @@ function addProduct() {
                     console.log("Product ID: " + inquirerResponse.newID + "\nItem: " + inquirerResponse.name +
                         "\nDepartment: " + inquirerResponse.newDept + "\nPrice: $" + inquirerResponse.newPrice +
                         "\nIn Stock: " + inquirerResponse.newQuant + "\n");
+                        begin();
                 })
-            begin();
         })
 }
