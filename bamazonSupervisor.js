@@ -88,17 +88,8 @@ function drawTable() {
             throw err
         }
         //console.log(response);
-        for (var i = 0; i < response.length; i += 1) {
-            var values = [
-                [
-                    "department_id", "department_name", "overhead_costs", "product_sales", "total_profit"
-                ],
-                [
-                    response[i].department_id, response[i].department_name, response[i].overhead_costs, response[i].product_sales, response[i].total_profit
-                ]
-            ]
-            console.table(values[0], values.slice(1));
-        }
+        console.table(response)
+        
         begin();
     })
 }
