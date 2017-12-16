@@ -40,7 +40,7 @@ function productDisplay() {
                 }
             ])
             .then(function (inquirerResponse) {
-                var item = "SELECT stock_quantity FROM products where item_id = " + inquirerResponse.itemId + ";";
+                var item = "SELECT stock_quantity FROM products WHERE item_id = " + inquirerResponse.itemId + ";";
                 connection.query(item, function (err, response) {
                     if (err) {
                         throw err
@@ -110,3 +110,4 @@ function purchase(num, funQuant, itemNumber) {
         })
     })
 };
+
